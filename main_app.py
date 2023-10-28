@@ -18,7 +18,7 @@ grouped_df= df.groupby(["School", "Grade","Section","Subject","Level"],
 st.subheader("Subject Average Across Grades")
 
 subject_list_1 = sorted(df.Subject.unique())
-select_subject_1 = st.selectbox("Subject", options = subject_list_1)
+select_subject_1 = st.selectbox("Subject", options = subject_list_1, index = 2)
 df_query_1 = grouped_df_mean.query('Subject == @select_subject_1')
 query_copy_1 = df_query_1.copy()
 
@@ -42,7 +42,7 @@ grouped_df_mean_level = df.groupby(["Grade","Subject","Level"],
 st.subheader("Subject Average Across Grades - Level Wise")
 
 subject_list_1l = sorted(df.Subject.unique())
-select_subject_1l = st.selectbox("Subject", options = subject_list_1l, key = "s1l")
+select_subject_1l = st.selectbox("Subject", options = subject_list_1l, index = 2, key = "s1l")
 df_query_1l = grouped_df_mean_level.query('Subject == @select_subject_1l')
 query_copy_1l = df_query_1l.copy()
 
@@ -67,7 +67,7 @@ grouped_df_mean_school = df.groupby(["School","Grade","Subject"],
 st.subheader("Subject Average Across Grades - School Wise")
 
 subject_list_1s = sorted(df.Subject.unique())
-select_subject_1s = st.selectbox("Subject", options = subject_list_1s, key = "s1s")
+select_subject_1s = st.selectbox("Subject", options = subject_list_1s, index = 2, key = "s1s")
 df_query_1s = grouped_df_mean_school.query('Subject == @select_subject_1s')
 query_copy_1s = df_query_1s.copy()
 
