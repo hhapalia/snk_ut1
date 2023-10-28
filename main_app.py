@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 # cd /Users/harshithapalia/Desktop/Python/Streamlit/exam_scores
 
-st.set_page_config(page_title="Unit Test 1 Scores 2023-24", layout="centered")
+st.set_page_config(page_title="Unit Test 1 Scores 2023-24", layout="wide")
 
 st.title("Unit Test 1 Scores 2023-24")
 
