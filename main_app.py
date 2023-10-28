@@ -109,7 +109,7 @@ fig_2.update_yaxes(range=[0, 100])
 fig_2.update_xaxes(title_text='Grade Sections')
 fig_2.update_yaxes(title_text='Average Score (%)')
 fig_2.update_traces(texttemplate='%{y:.2f}')
-fig_2.update_traces(textposition='inside', textangle=0)
+fig_2.update_traces(textposition='inside', textangle=0, textfont_size = 15)
 fig_2.add_hline(y=l0, line_dash = "dash", line_width = 0.75) 
                 #annotation_text=mean_line, 
                 #annotation_position="top left")
