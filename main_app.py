@@ -42,7 +42,7 @@ grouped_df_mean_level = df.groupby(["Grade","Subject","Level"],
 st.subheader("Subject Average Across Grades - Level Wise")
 
 subject_list_1l = sorted(df.Subject.unique())
-select_subject_1l = st.selectbox("Subject", options = subject_list_1l, index = 2, key = "s1l")
+select_subject_1l = st.selectbox("Subject", options = subject_list_1l, index = 2,  key = "s1l")
 df_query_1l = grouped_df_mean_level.query('Subject == @select_subject_1l')
 query_copy_1l = df_query_1l.copy()
 
@@ -61,13 +61,40 @@ fig_1l.add_annotation(text="Average Score Across Grades",
 
 st.plotly_chart(fig_1l, use_container_width = True)
 
+grouped_df_mean_level_school = df.groupby(["Grade","Subject","Type","Level"], 
+                                   as_index=False)["Marks"].mean()
+
+st.subheader("Subject Average Across Grades - Level Wise - Half/Full Day")
+
+grade_list_ls = sorted(df.Grade.unique())
+select_grade_ls = st.selectbox("Grade", options = grade_list_ls, key = "sgls")
+
+subject_list_ls = sorted(df[df["Grade"] == select_grade_ls].Subject.unique())
+select_subject_ls = st.selectbox("Subject", options = subject_list_ls, key = "ssls")
+
+df_query_2_ls = grouped_df_mean_level_school.query('Grade == @select_grade_ls and Subject == @select_subject_ls')
+query_copy_2_ls = df_query_2_ls.copy()
+fig_2ls = px.bar(query_copy_2_ls, x = "Level", y = "Marks", text = "Marks", 
+               color = "Type", barmode = "group", template = "plotly", 
+               hover_data={'Marks':':.2f'})
+fig_2ls.update_layout(xaxis={'categoryorder':'category ascending'})
+fig_2ls.update_layout(title=f"Grade {select_grade_ls} - {select_subject_ls}", title_x=0.5)
+fig_2ls.update_yaxes(range=[0, 100])
+fig_2ls.update_xaxes(title_text='Level')
+fig_2ls.update_yaxes(title_text='Average Score (%)')
+fig_2ls.update_traces(texttemplate='%{y:.2f}')
+fig_2ls.update_traces(textposition='inside', textangle=0)
+
+st.plotly_chart(fig_2ls, use_container_width = True)
+
+
 grouped_df_mean_school = df.groupby(["School","Grade","Subject"], 
                                     as_index=False)["Marks"].mean()
 
 st.subheader("Subject Average Across Grades - School Wise")
 
 subject_list_1s = sorted(df.Subject.unique())
-select_subject_1s = st.selectbox("Subject", options = subject_list_1s, index = 2, key = "s1s")
+select_subject_1s = st.selectbox("Subject", options = subject_list_1s, key = "s1s")
 df_query_1s = grouped_df_mean_school.query('Subject == @select_subject_1s')
 query_copy_1s = df_query_1s.copy()
 
@@ -109,7 +136,7 @@ fig_2.update_yaxes(range=[0, 100])
 fig_2.update_xaxes(title_text='Grade Sections')
 fig_2.update_yaxes(title_text='Average Score (%)')
 fig_2.update_traces(texttemplate='%{y:.2f}')
-fig_2.update_traces(textposition='inside', textangle=0, textfont_size = 15)
+fig_2.update_traces(textposition='inside', textangle=0)
 fig_2.add_hline(y=l0, line_dash = "dash", line_width = 0.75) 
                 #annotation_text=mean_line, 
                 #annotation_position="top left")
