@@ -94,7 +94,7 @@ grouped_df_mean_school = df.groupby(["School","Grade","Subject"],
 st.subheader("Subject Average Across Grades - School Wise")
 
 subject_list_1s = sorted(df.Subject.unique())
-select_subject_1s = st.selectbox("Subject", options = subject_list_1s, key = "s1s")
+select_subject_1s = st.selectbox("Subject", options = subject_list_1s, index = 2, key = "s1s")
 df_query_1s = grouped_df_mean_school.query('Subject == @select_subject_1s')
 query_copy_1s = df_query_1s.copy()
 
