@@ -3,6 +3,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
+st.set_page_config(page_title="Unit Test 1 Scores 2023-24", layout="wide")
+
 st.title("Unit Test 1 Scores 2023-24")
 
 df = pd.read_csv("ut_1to8_scores_long.csv")
