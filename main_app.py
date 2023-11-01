@@ -74,10 +74,10 @@ select_subject_ls = st.selectbox("Subject", options = subject_list_ls, key = "ss
 
 df_query_2_ls = grouped_df_mean_level_school.query('Grade == @select_grade_ls and Subject == @select_subject_ls')
 query_copy_2_ls = df_query_2_ls.copy()
-fig_2ls = px.bar(query_copy_2_ls, x = "Level", y = "Marks", text = "Marks", 
-               color = "Type", barmode = "group", template = "plotly", 
+fig_2ls = px.bar(query_copy_2_ls, x = "Type", y = "Marks", text = "Marks", 
+               color = "Level", barmode = "group", template = "plotly", 
                hover_data={'Marks':':.2f'})
-fig_2ls.update_layout(xaxis={'categoryorder':'category ascending'})
+fig_2ls.update_layout(xaxis={'categoryorder':'category descending'})
 fig_2ls.update_layout(title=f"Grade {select_grade_ls} - {select_subject_ls}", title_x=0.5)
 fig_2ls.update_yaxes(range=[0, 100])
 fig_2ls.update_xaxes(title_text='Level')
@@ -94,7 +94,7 @@ grouped_df_mean_school = df.groupby(["School","Grade","Subject"],
 st.subheader("Subject Average Across Grades - School Wise")
 
 subject_list_1s = sorted(df.Subject.unique())
-select_subject_1s = st.selectbox("Subject", options = subject_list_1s, index = 2, key = "s1s")
+select_subject_1s = st.selectbox("Subject", options = subject_list_1s, key = "s1s")
 df_query_1s = grouped_df_mean_school.query('Subject == @select_subject_1s')
 query_copy_1s = df_query_1s.copy()
 
