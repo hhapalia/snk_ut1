@@ -29,7 +29,7 @@ df_query_1 = grouped_df1.query('Grade == @select_grade and Subject == @select_su
 query_copy_1 = df_query_1.copy()
 
 fig_1 = px.bar(query_copy_1, x="Teacher", y="Marks", title=f"Grade {select_grade} - {select_subject}", 
-               text="Marks", template = "plotly", hover_data={'Marks':':.2f'})
+               text="Marks", template = "plotly", hover_data={'Marks':':.2f'}, color_discrete_map={"L1": "#EF553B", "L2": "#636EFA"})
 fig_1.update_layout(title_x=0.5)
 fig_1.update_traces(texttemplate='%{y:.2f}', textfont_size=20)
 fig_1.update_yaxes(range=[0, 100])
@@ -49,7 +49,7 @@ query_copy_2 = df_query_2.copy()
 
 fig_2 = px.bar(query_copy_2, x="Teacher", y="Marks", title=f"Grade {select_grade} - {select_subject}", 
                text="Marks", color = "Level", barmode = "group", 
-               template = "plotly", hover_data={'Marks':':.2f'})
+               template = "plotly", hover_data={'Marks':':.2f'}, color_discrete_map={"L1": "#EF553B", "L2": "#636EFA"})
 fig_2.update_layout(title_x=0.5)
 fig_2.update_traces(texttemplate='%{y:.2f}', textfont_size=20)
 fig_2.update_yaxes(range=[0, 100])
