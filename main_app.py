@@ -48,7 +48,7 @@ query_copy_1l = df_query_1l.copy()
 
 fig_1l = px.bar(query_copy_1l, x="Grade", y="Marks", title=f"{select_subject_1l}", 
                 text="Marks", color = "Level", barmode = "group",template = "plotly", 
-                hover_data={'Marks':':.2f'})
+                hover_data={'Marks':':.2f'}, color_discrete_map={"L1": "#EF553B", "L2": "#636EFA"})
 fig_1l.update_layout(title_x=0.5)
 fig_1l.update_traces(texttemplate='%{y:.2f}', textfont_size=15)
 fig_1l.update_yaxes(range=[0, 100])
@@ -76,7 +76,7 @@ df_query_2_ls = grouped_df_mean_level_school.query('Grade == @select_grade_ls an
 query_copy_2_ls = df_query_2_ls.copy()
 fig_2ls = px.bar(query_copy_2_ls, x = "Type", y = "Marks", text = "Marks", 
                color = "Level", barmode = "group", template = "plotly", 
-               hover_data={'Marks':':.2f'})
+               hover_data={'Marks':':.2f'}, color_discrete_map={"L1": "#EF553B", "L2": "#636EFA"})
 fig_2ls.update_layout(xaxis={'categoryorder':'category descending'})
 fig_2ls.update_layout(title=f"Grade {select_grade_ls} - {select_subject_ls}", title_x=0.5)
 fig_2ls.update_yaxes(range=[0, 100])
